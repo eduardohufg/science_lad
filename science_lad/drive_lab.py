@@ -53,15 +53,29 @@ class DriveScienceListener(Node):
     def main(self):
         print("entre")
 
-        self.servo1.moveTimeWrite(int(self.servo1_data))
-        self.servo3.moveTimeWrite(int(self.servo2_data))
+        if(self.servo1_data == -1):
+            self.servo1.moveTimeWrite(0)
+        elif(self.servo1_data == 0):
+            self.servo1.moveTimeWrite(95)
+        elif(self.servo1_data == 1):
+            self.servo1.moveTimeWrite(185)
+
+        if(self.servo2_data == -1):
+            self.servo3.moveTimeWrite(0)
+        elif(self.servo2_data == 0):
+            self.servo3.moveTimeWrite(95)
+        elif(self.servo2_data == 1):
+            self.servo3.moveTimeWrite(185)
+
+        #self.servo1.moveTimeWrite(int(self.servo1_data))
+        #self.servo3.moveTimeWrite(int(self.servo2_data))
 
         if(self.elevator_data == 1):
             self.ser.write(('1\n').encode())
         elif(self.elevator_data == -1):
             self.ser.write(('0\n').encode())
-        else:
-            self.ser.write(('2\n').encode())
+        #else:
+            #self.ser.write(('2\n').encode())
 
 
         
